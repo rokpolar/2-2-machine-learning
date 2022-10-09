@@ -1,0 +1,43 @@
+// 계단 함수
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.arange(-10.0, 10.0, 0.1)
+y = step(x)
+plt.plot(x, y)
+plt.show()
+
+//시그모이드 함수
+import numpy as np
+import matplotlib.pyplot as plt
+
+def sigmoid(x):
+	return 1.0 / (1.0 + np.exp(-x)) 
+
+x = np.arange(-10.0, 10.0, 0.1)
+y = sigmoid(x)
+plt.plot(x, y)
+plt.show()
+
+//tanh 함수
+import numpy as np 
+import matplotlib.pyplot as plt 
+  
+x = np.linspace(-np.pi, np.pi, 60) 
+y = np.tanh(x) 
+plt.plot(x, y) 
+plt.show() 
+
+//ReLU 함수
+import numpy as np 
+import matplotlib.pyplot as plt 
+
+def relu(x):
+	return np.maximum(x, 0)   # 둘 중 큰 수 반환
+  
+x = np.arange(-10.0, 10.0, 0.1)
+y = relu(x)
+plt.plot(x, y) 
+plt.show() 
+
+//
