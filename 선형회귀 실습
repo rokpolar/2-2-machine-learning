@@ -1,0 +1,55 @@
+// 인간의 키와 몸무게는 어느 정도 비례할 것으로 예상된다. 아래와 같은 데이터가 있을 때, 
+// 선형 회귀를 이용하여 학습시키고 키가 165cm일 때의 예측값을 얻어보자. 파이썬으로 구현하여 본다. 
+
+
+import matplotlib.pylab as plt
+from sklearn import linear_model
+
+reg = linear_model.LinearRegression()
+
+X = [[174], [152], [138], [128], [186]]		
+y = [71, 55, 46, 38, 88]	
+
+reg.fit(X, y)			# 학습
+
+print(reg.predict([[165]]))
+
+# 학습 데이터와 y 값을 산포도로 그린다. 
+plt.scatter(X, y, color='black')
+
+# 학습 데이터를 입력으로 하여 예측값을 계산한다.
+y_pred = reg.predict(X)
+
+# 학습 데이터와 예측값으로 선그래프로 그린다. 
+# 계산된 기울기와 y 절편을 가지는 직선이 그려진다. 
+plt.plot(X, y_pred, color='blue', linewidth=3)		
+plt.show()
+
+// sklearn 라이브러리에는 당뇨병 환자들의 데이터가 기본적으로 포함되어 있다
+
+import matplotlib.pylab as plt
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn import datasets
+
+# 당뇨병 데이터 세트를 적재한다. 
+diabetes_X, diabetes_y = datasets.load_diabetes(return_X_y=True)
+
+# 하나의 특징(BMI)만 추려내서 2차원 배열로 만든다. BMI 특징의 인덱스가 2이다.
+diabetes_X_new = diabetes_X[:, np.newaxis, 2]
+
+# 학습 데이터와 테스트 데이터를 분리한다. 
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(diabetes_X_new, diabetes_y, test_size=0.1, random_state=0)
+regr = linear_model.LinearRegression()
+regr.fit(X_train, y_train)
+
+# 테스트 데이터로 예측해보자. 
+y_pred = model.predict(X_test) 
+
+# 실제 데이터와 예측 데이터를 비교해보자. 
+plt.plot(y_test, y_pred, '.')
+
+plt.scatter(X_test, y_test,  color='black')
+plt.plot(X_test, y_pred, color='blue', linewidth=3)
+plt.show()
