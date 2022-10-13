@@ -16,8 +16,8 @@ n = float(len(X)) # 입력 데이터의 개수
 
 # 경사 하강법
 for i in range(epochs): 
-    y_pred = W*X + b  # 예측값
-    dW = (2/n) * sum(X * (y_pred-y)) 
+    y_pred = W*X + b  # 예측값 f(x)
+    dW = (2/n) * sum(X * (y_pred-y)) # dW/dw = 2/n * sum(x*(Wx+b))
     db = (2/n) * sum(y_pred-y)  
     W = W - lrate * dW  # 기울기 수정
     b = b - lrate * db  # 절편 수정
